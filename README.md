@@ -26,75 +26,7 @@
 
 下面模型只写到两车交互，若有其他交互目标则可继续扩展。 状态空间模型:
 
-$$
-{k}_{1} = {k}_{0} + d{k}_{0} * {dt}
-$$
-
-$$
-{q}_{1} = {q}_{0} + {k}_{0} * {dt} + \frac{1}{2}d{k}_{0} * d{t}^{2}
-$$
-
-$$
-{q}_{\text{mid }} = {q}_{0} + \frac{1}{2}{k}_{0} * {dt} + \frac{1}{8}d{k}_{0} * d{t}^{2}
-$$
-
-$$
-{ds} = {v}_{0} * {dt} + \frac{1}{2}{a}_{0} * d{t}^{2} + \frac{1}{6}{j}_{0} * d{t}^{3} + \frac{1}{24}d{j}_{0} * d{t}^{4}
-$$
-
-$$
-{j}_{1} = {j}_{0} + d{j}_{0} * {dt}
-$$
-
-$$
-{a}_{1} = {a}_{0} + {j}_{0} * {dt} + \frac{1}{2}d{j}_{0} * d{t}^{2}
-$$
-
-$$
-{v}_{1} = {v}_{0} + {a}_{0} * {dt} + \frac{1}{2}{j}_{0} * d{t}^{2} + \frac{1}{6}d{j}_{0} * d{t}^{3}
-$$
-
-$$
-{x}_{1} = {x}_{0} + {ds} \ast  {cos}({q}_{mid}) = {x}_{0} + ({v}_{0} \ast  {dt} + \frac{1}{2}{a}_{0} \ast  d{t}^{2} + \frac{1}{6}{j}_{0} \ast  d{t}^{3} + \frac{1}{24}d{j}_{0} \ast  d{t}^{4}) \ast  {cos}({q}_{mid})
-$$
-
-$$
-{y}_{1} = {y}_{0} + {ds} \ast  {sin}({q}_{mid}) = {y}_{0} + ({v}_{0} \ast  {dt} + \frac{1}{2}{a}_{0} \ast  d{t}^{2} + \frac{1}{6}{j}_{0} \ast  d{t}^{3} + \frac{1}{24}d{j}_{0} \ast  d{t}^{4}) \ast  {sin}({q}_{mid})
-$$
-
-$$
-{q}_{1}^{\prime } = {q}_{0}^{\prime } + {k}_{0}^{\prime } * {dt}
-$$
-
-$$
-{q}_{\text{mid }}^{\prime } = {q}_{0}^{\prime } + \frac{1}{2}{k}_{0}^{\prime } * {dt}
-$$
-
-$$
-d{s}^{\prime } = {v}_{0}^{\prime } * {dt} + \frac{1}{2}{a}_{0}^{\prime } * d{t}^{2} + \frac{1}{6}{j}_{0}^{\prime } * d{t}^{3}
-$$
-
-$$
-{a}_{1}^{\prime } = {a}_{0}^{\prime } + {j}_{0}^{\prime } * {dt}
-$$
-
-$$
-{v}_{1}^{\prime } = {v}_{0}^{\prime } + {a}_{0}^{\prime } * {dt} + \frac{1}{2}{j}_{0}^{\prime } * d{t}^{2}
-$$
-
-$$
-{x}_{1}^{\prime } = {x}_{0}^{\prime } + {ds}{ * }^{\prime }\cos \left( {q}_{\text{mid }}^{\prime }\right)  = {x}_{0}^{\prime } + \left( {{v}_{0}^{\prime } * {dt} + \frac{1}{2}{a}_{0}^{\prime } * d{t}^{2} + \frac{1}{6}{j}_{0}^{\prime } * d{t}^{3}}\right)  * \cos \left( {q}_{\text{mid }}^{\prime }\right)
-$$
-
-$$
-{y}_{1}^{\prime } = {y}_{0}^{\prime } + {ds} * \sin \left( {q}_{\text{mid }}^{\prime }\right)  = {y}_{0}^{\prime } + \left( {{v}_{0}^{\prime } * {dt} + \frac{1}{2}{a}_{0}^{\prime } * d{t}^{2} + \frac{1}{6}{j}_{0}^{\prime } * d{t}^{3}}\right)  * \sin \left( {q}_{\text{mid }}^{\prime }\right)
-$$
-
-$\ldots$
-
-$$
-{t}_{1} = {t}_{0} + {dt}
-$$
+![image](./picture/2024-08-21_11-47.png)
 
 离散状态方程:
 
@@ -102,26 +34,13 @@ $$
 
 对各项求偏导, 得到线性化状态方程如下:
 
-$$
-\bigtriangleup {X}_{1} = \left\lbrack  \begin{matrix} A & 0 \\  0 & {A}^{\prime } \end{matrix}\right\rbrack  \bigtriangleup {X}_{0} + \left\lbrack  \begin{matrix} B & 0 \\  0 & {B}^{\prime } \end{matrix}\right\rbrack  \bigtriangleup {U}_{0}
-$$
+![image](./picture/2024-08-21_11-48.png)
 
 其中:
 
 ![image](./picture/2024-08-21_01-41.png)
 
-$$
-{A}^{\prime } = \left\lbrack  \begin{matrix} 1 & 0 &  - d{s}^{\prime } * \sin \left( {q}_{\text{mid }}^{\prime }\right) & {dt} * \cos \left( {q}_{\text{mid }}^{\prime }\right) & \frac{1}{2} * d{t}^{2} * \cos \left( {q}_{\text{mid }}^{\prime }\right) \\  0 & 1 & d{s}^{\prime } * \cos \left( {q}_{\text{mid }}^{\prime }\right) & {dt} * \sin \left( {q}_{\text{mid }}^{\prime }\right) & \frac{1}{2} * d{t}^{2} * \sin \left( {q}_{\text{mid }}^{\prime }\right) \\  0 & 0 & 1 & 0 & 0 \\  0 & 0 & 0 & 1 & {dt} \\  0 & 0 & 0 & 0 & 1 \end{matrix}\right\rbrack
-$$
-
-$$
-B = \left\lbrack  \begin{matrix}  - \frac{1}{8} * {ds} * d{t}^{2} * {sin}\left( {q}_{mid}\right) & \frac{1}{24}d{t}^{4} * {cos}\left( {q}_{mid}\right) \\  \frac{1}{8} * {ds} * d{t}^{2} * {cos}\left( {q}_{mid}\right) & \frac{1}{24}d{t}^{4} * {sin}\left( {q}_{mid}\right) \\  \frac{1}{2} * d{t}^{2} & 0 \\  {dt} & 0 \\  0 & \frac{1}{6} * d{t}^{3} \\  0 & {dt} \end{matrix}\right\rbrack
-$$
-
-$$
-{B}^{\prime } = \left\lbrack  \begin{matrix}  - \frac{1}{2} * d{s}^{\prime } * {dt} * \sin \left( {q}_{mid}^{\prime }\right) & \frac{1}{6}d{t}^{3} * \cos \left( {q}_{mid}^{\prime }\right) \\  \frac{1}{2} * d{s}^{\prime } * {dt} * \cos \left( {q}_{mid}^{\prime }\right) & \frac{1}{6}d{t}^{3} * \sin \left( {q}_{mid}^{\prime }\right) \\  {dt} & 0 \\  0 & \frac{1}{2} * d{t}^{2} \\  0 & {dt} \end{matrix}\right\rbrack
-$$
-
+![image](./picture/2024-08-21_11-49.png)
 
 ## 3. Spacetime problem potential设计
 
