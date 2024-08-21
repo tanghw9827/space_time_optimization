@@ -465,7 +465,6 @@ std::vector<GenericSmoothAttractor1D*> gap_vel_attractors;
 
 <img src="https://cdn.noedgeai.com/019170ce-6ed8-75a9-bf38-bf069e8ba151_15.jpg?x=64&y=60&w=1278&h=781"/>
 
-
 ## 5. 路测效果
 
 | cut-in场景 | [1.mp4](./case/1.mp4) |
