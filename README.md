@@ -477,7 +477,7 @@ $$
 
 - 通过两车三圆盘模型, 依次计算两车三个圆盘之间的两两距离
 
-- $\mathrm{{dx}} = \min \left\{  {\operatorname{sqrt}\left( {{\left( \mathrm{x} - {\mathrm{x}}^{\prime }\right) }^{ \land  }2 + {\left( \mathrm{y} - {\mathrm{y}}^{\prime }\right) }^{ \land  }2}\right)  - \mathrm{R} - {\mathrm{R}}^{\prime }}\right\}$
+![image](./picture/2024-08-21_11-41.png)
 
 - d_r = max(buffer_ - dx, 0)
 
