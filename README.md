@@ -464,3 +464,12 @@ std::vector<GenericSmoothAttractor1D*> gap_vel_attractors;
 ## 4. 流程图
 
 <img src="https://cdn.noedgeai.com/019170ce-6ed8-75a9-bf38-bf069e8ba151_15.jpg?x=64&y=60&w=1278&h=781"/>
+
+
+## 5. 路测效果
+
+| cut-in场景 | [1.mp4](./case/1.mp4) |
+| :-- | :-- |
+| 多目标交互绕行 | [2.mp4](./case/2.mp4) |
+| 过弯、路口 | [3.mp4](./case/3.mp4) |
+| 跟轨迹行驶 | [4.mp4](./case/4.mp4)  |
